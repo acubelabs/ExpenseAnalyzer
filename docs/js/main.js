@@ -1,7 +1,32 @@
 /**
  * Expense Analyzer Official Website Controller
- * Handles Screenshot Carousel, Tab Switcher, FAQ Accordion, Mobile Nav
+ * Handles Preloader, Screenshot Carousel, Tab Switcher, FAQ Accordion, Mobile Nav
  */
+
+// Hide preloader when fonts and page styles are fully rendered
+function hidePreloader() {
+  const preloader = document.getElementById('app-preloader');
+  if (preloader && !preloader.classList.contains('loaded')) {
+    preloader.classList.add('loaded');
+  }
+}
+
+// Fast preloader dismissal
+if ('fonts' in document) {
+  Promise.all([
+    document.fonts.ready,
+    new Promise(resolve => {
+      if (document.readyState === 'complete') resolve();
+      else window.addEventListener('load', resolve);
+    })
+  ]).then(hidePreloader);
+} else {
+  if (document.readyState === 'complete') hidePreloader();
+  else window.addEventListener('load', hidePreloader);
+}
+
+// Fallback safety timeout (400ms max) to ensure loader disappears fast
+setTimeout(hidePreloader, 400);
 
 document.addEventListener('DOMContentLoaded', () => {
   initMobileNav();
