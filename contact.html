@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About Us & Contact — Expense Analyzer by Acube Labs</title>
+  <meta name="description" content="Learn about Acube Labs, the mission behind Expense Analyzer's local-first architecture, and contact our development team for support.">
+  <link rel="icon" type="image/png" href="assets/images/logo.png">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+  <!-- Ambient Backdrop -->
+  <div class="ambient-glow"></div>
+  <div class="grid-overlay"></div>
+
+  <!-- Header / Navigation -->
+  <header class="navbar">
+    <div class="container nav-container">
+      <a href="index.html" class="brand">
+        <img src="assets/images/logo.png" alt="Expense Analyzer Logo" class="brand-logo">
+        <span>Expense Analyzer</span>
+      </a>
+
+      <nav>
+        <ul class="nav-links">
+          <li><a href="index.html" class="nav-link">Home</a></li>
+          <li><a href="features.html" class="nav-link">Features & Flow</a></li>
+          <li><a href="statement-guide.html" class="nav-link">Statement Guide</a></li>
+          <li><a href="contact.html" class="nav-link active">About & Contact</a></li>
+        </ul>
+      </nav>
+
+      <div class="nav-cta">
+        <a href="contact.html" class="btn btn-primary">Get App</a>
+      </div>
+
+      <button class="mobile-toggle" aria-label="Toggle navigation">
+        <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16"></path></svg>
+      </button>
+    </div>
+
+    <div class="mobile-nav">
+      <a href="index.html" class="nav-link">Home</a>
+      <a href="features.html" class="nav-link">Features & Flow</a>
+      <a href="statement-guide.html" class="nav-link">Statement Guide</a>
+      <a href="privacy.html" class="nav-link">Privacy Policy</a>
+      <a href="terms.html" class="nav-link">Terms of Service</a>
+      <a href="contact.html" class="nav-link active">About & Contact</a>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero" style="padding-bottom: 40px;">
+    <div class="container">
+      <div class="hero-content">
+        <div class="badge" style="margin-bottom: 20px;">
+          <span class="badge-dot"></span> Engineering Privacy-First Software
+        </div>
+        <h1>About Acube Labs & <span class="gradient-text">Contact Support</span></h1>
+        <p class="hero-subtitle">
+          We build modern, local-first software tools that respect user autonomy. Get in touch with our engineering team for technical support or feedback.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Us Section -->
+  <section style="padding: 40px 0 60px;">
+    <div class="container">
+      <div class="grid-2" style="align-items: center;">
+        <div>
+          <div class="badge" style="margin-bottom: 16px;">Our Mission</div>
+          <h2>Why We Built Expense Analyzer</h2>
+          <p style="margin-top: 16px;">
+            Modern financial applications increasingly demand that users upload personal bank statements, card logs, and transaction details to central cloud servers. At Acube Labs, we believe financial data is too sensitive to be pooled remotely.
+          </p>
+          <p style="margin-top: 12px;">
+            We engineered Expense Analyzer on a strict <strong>Local-First, Zero-Server Philosophy</strong>. Every bank statement is parsed directly on your Android device's CPU/GPU, every transaction is stored inside a physical local SQLite database, and all AI queries default to on-device MediaPipe LLM execution.
+          </p>
+        </div>
+
+        <div style="background: var(--bg-card); border: 1px solid var(--border-card); border-radius: var(--radius-lg); padding: 32px;">
+          <h3 style="color: var(--emerald-light); margin-bottom: 16px;">Developer Contact Details</h3>
+          <ul style="list-style: none; display: flex; flex-direction: column; gap: 16px; font-size: 0.95rem;">
+            <li style="display: flex; gap: 12px; align-items: center;">
+              <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+              <span><strong>Direct Email:</strong> <a href="mailto:acubelabs.dev@gmail.com">acubelabs.dev@gmail.com</a></span>
+            </li>
+            <li style="display: flex; gap: 12px; align-items: center;">
+              <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path></svg>
+              <span><strong>Organization:</strong> Acube Labs</span>
+            </li>
+            <li style="display: flex; gap: 12px; align-items: center;">
+              <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path></svg>
+              <span><strong>Privacy Architecture:</strong> 100% On-Device SQLite</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Interactive Contact Form -->
+  <section style="padding: 60px 0; background: var(--bg-surface); border-top: 1px solid var(--border-subtle); border-bottom: 1px solid var(--border-subtle);">
+    <div class="container">
+      <div class="section-header">
+        <div class="badge">Get In Touch</div>
+        <h2 style="margin-top: 12px;">Send Us A Message</h2>
+        <p>Have a question about bank statement parsing, feature requests, or multi-tenant database setup?</p>
+      </div>
+
+      <form class="contact-form" action="mailto:acubelabs.dev@gmail.com" method="post" enctype="text/plain">
+        <div class="form-group">
+          <label for="name">Your Name</label>
+          <input type="text" id="name" name="name" class="form-control" placeholder="John Doe" required>
+        </div>
+
+        <div class="form-group">
+          <label for="email">Email Address</label>
+          <input type="email" id="email" name="email" class="form-control" placeholder="john@example.com" required>
+        </div>
+
+        <div class="form-group">
+          <label for="topic">Inquiry Topic</label>
+          <select id="topic" name="topic" class="form-control" style="background: var(--bg-surface);">
+            <option value="General Technical Inquiry">General Technical Inquiry</option>
+            <option value="Statement Parser Support">Statement Parser & Format Support</option>
+            <option value="Multi-Tenant Database Question">Multi-Tenant Database Setup</option>
+            <option value="Finley AI Assistant Question">Finley AI & Gemini Integration</option>
+            <option value="Bug Report / Feedback">Bug Report / Feature Request</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="message">Message Body</label>
+          <textarea id="message" name="message" class="form-control" placeholder="Write your message here..." required></textarea>
+        </div>
+
+        <button type="submit" class="btn btn-primary" style="width: 100%;">Send Message</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- FAQ Section -->
+  <section style="padding: 80px 0;">
+    <div class="container">
+      <div class="section-header">
+        <div class="badge">Questions & Answers</div>
+        <h2 style="margin-top: 12px;">Frequently Asked Questions</h2>
+      </div>
+
+      <div class="faq-list">
+
+        <div class="faq-item">
+          <button class="faq-question">
+            <span>Where is my bank transaction data stored?</span>
+            <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19 9l-7 7-7-7"></path></svg>
+          </button>
+          <div class="faq-answer">
+            Your data is stored 100% locally on your phone inside an isolated SQLite database file (`expense_analyzer_user.db`). Acube Labs operates zero cloud servers.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question">
+            <span>Does Acube Labs ever see my uploaded bank statements?</span>
+            <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19 9l-7 7-7-7"></path></svg>
+          </button>
+          <div class="faq-answer">
+            No. All PDF decryption, Excel parsing, and OpenCV receipt text recognition happen entirely on your device's hardware. Your statements never leave your device.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question">
+            <span>How does the Multi-Tenant isolation work on shared devices?</span>
+            <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19 9l-7 7-7-7"></path></svg>
+          </button>
+          <div class="faq-answer">
+            Expense Analyzer creates physically distinct SQLite database files on disk for each Google profile logged into the app. When User A logs out, User A's database file is fully closed before User B's file is accessed.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question">
+            <span>How can I back up my financial records?</span>
+            <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19 9l-7 7-7-7"></path></svg>
+          </button>
+          <div class="faq-answer">
+            You can enable Google Drive Backups in Settings. The app encrypts your local database file and uploads it directly to a hidden private folder in your personal Google Drive account.
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="index.html" class="brand">
+            <img src="assets/images/logo.png" alt="Expense Analyzer Logo" class="brand-logo">
+            <span>Expense Analyzer</span>
+          </a>
+          <p>Privacy-First, Local-Only Financial Intelligence powered by Acube Labs.</p>
+        </div>
+
+        <div>
+          <h4 class="footer-title">Navigation</h4>
+          <ul class="footer-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="features.html">Features & Flow</a></li>
+            <li><a href="statement-guide.html">Statement Guide</a></li>
+            <li><a href="contact.html">About & Contact</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="footer-title">Legal & Security</h4>
+          <ul class="footer-links">
+            <li><a href="privacy.html">Privacy Policy</a></li>
+            <li><a href="terms.html">Terms of Service</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="footer-title">Developer</h4>
+          <ul class="footer-links">
+            <li><a href="contact.html">Acube Labs</a></li>
+            <li><a href="mailto:acubelabs.dev@gmail.com">acubelabs.dev@gmail.com</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div>&copy; 2026 Acube Labs. All rights reserved.</div>
+        <div>Local-First • Zero Cloud Servers</div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

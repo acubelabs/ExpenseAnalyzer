@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Statement Upload & Supporting Documents Guide — Expense Analyzer</title>
+  <meta name="description" content="Official documentation for Expense Analyzer bank statement parser: supported file formats, recognized column headers, 40+ date formats, and strict document rejection rules.">
+  <link rel="icon" type="image/png" href="assets/images/logo.png">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+  <!-- Ambient Backdrop -->
+  <div class="ambient-glow"></div>
+  <div class="grid-overlay"></div>
+
+  <!-- Header / Navigation -->
+  <header class="navbar">
+    <div class="container nav-container">
+      <a href="index.html" class="brand">
+        <img src="assets/images/logo.png" alt="Expense Analyzer Logo" class="brand-logo">
+        <span>Expense Analyzer</span>
+      </a>
+
+      <nav>
+        <ul class="nav-links">
+          <li><a href="index.html" class="nav-link">Home</a></li>
+          <li><a href="features.html" class="nav-link">Features & Flow</a></li>
+          <li><a href="statement-guide.html" class="nav-link active">Statement Guide</a></li>
+          <li><a href="contact.html" class="nav-link">About & Contact</a></li>
+        </ul>
+      </nav>
+
+      <div class="nav-cta">
+        <a href="contact.html" class="btn btn-primary">Get App</a>
+      </div>
+
+      <button class="mobile-toggle" aria-label="Toggle navigation">
+        <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16"></path></svg>
+      </button>
+    </div>
+
+    <div class="mobile-nav">
+      <a href="index.html" class="nav-link">Home</a>
+      <a href="features.html" class="nav-link">Features & Flow</a>
+      <a href="statement-guide.html" class="nav-link active">Statement Guide</a>
+      <a href="privacy.html" class="nav-link">Privacy Policy</a>
+      <a href="terms.html" class="nav-link">Terms of Service</a>
+      <a href="contact.html" class="nav-link">About & Contact</a>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero" style="padding-bottom: 40px;">
+    <div class="container">
+      <div class="hero-content">
+        <div class="badge" style="margin-bottom: 20px;">
+          <span class="badge-dot"></span> Official Parser Documentation
+        </div>
+        <h1>Supporting Documents & <span class="gradient-text">Statement Upload Guide</span></h1>
+        <p class="hero-subtitle">
+          Learn how Expense Analyzer automatically scans digital PDF bank statements and Excel spreadsheets, detects table structures, handles 40+ date formats, and rejects non-financial records.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Interactive Guide Content -->
+  <section style="padding: 40px 0 80px;">
+    <div class="container">
+      <div class="tab-container">
+        <div class="tab-nav">
+          <button class="tab-btn active" data-tab="tab-formats">1. Supported Formats</button>
+          <button class="tab-btn" data-tab="tab-headers">2. Column Headers Matcher</button>
+          <button class="tab-btn" data-tab="tab-dates">3. 40+ Date Formats</button>
+          <button class="tab-btn" data-tab="tab-rejection">4. Document Rejection Rules</button>
+        </div>
+
+        <!-- Tab 1: Formats -->
+        <div id="tab-formats" class="tab-content active">
+          <h3 style="margin-bottom: 16px;">Supported File Formats</h3>
+          <p>Expense Analyzer processes financial statements in the following native digital document formats:</p>
+
+          <div class="grid-2" style="margin-top: 24px;">
+            <div class="card">
+              <div class="card-icon">
+                <svg width="26" height="26" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z"></path></svg>
+              </div>
+              <h3>PDF Documents (`.pdf`)</h3>
+              <p>Digital bank and credit card statements containing a readable embedded text layer. Encrypted/password-protected PDFs are fully supported (the app prompts for the statement password upon upload).</p>
+            </div>
+
+            <div class="card">
+              <div class="card-icon">
+                <svg width="26" height="26" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
+              </div>
+              <h3>Excel Spreadsheets (`.xlsx`, `.xls`)</h3>
+              <p>Modern and legacy Microsoft Excel spreadsheets exported from net banking portals, credit card dashboards, or accounting software.</p>
+            </div>
+          </div>
+
+          <div style="margin-top: 32px; padding: 20px; background: var(--bg-card); border-left: 4px solid var(--emerald); border-radius: var(--radius-sm);">
+            <strong>Automated Table Scanning:</strong> The parser scans up to the first 100 rows of any uploaded document to automatically identify transaction table headers, skipping bank logos, branch addresses, and customer metadata.
+          </div>
+        </div>
+
+        <!-- Tab 2: Column Headers -->
+        <div id="tab-headers" class="tab-content">
+          <h3 style="margin-bottom: 16px;">Recognized Column Headers</h3>
+          <p>The statement parser automatically maps transaction columns using weighted keyword matching across the following categories:</p>
+
+          <div class="data-table-wrap">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Column Type</th>
+                  <th>Recognized Keyword Headers</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>Date Column</strong></td>
+                  <td>`Date`, `Txn Date`, `Tran Date`, `Transaction Date`, `Value Date`, `Posting Date`, `Post Date`, `Date & Time`, `Date/Time`</td>
+                </tr>
+                <tr>
+                  <td><strong>Narration / Description</strong></td>
+                  <td>`Description`, `Narration`, `Particulars`, `Transaction Details`, `Txn Details`, `Remarks`, `Note`, `Memo`, `Details`, `Paid To`, `Received From`, `Payee`, `Payer`, `Beneficiary`</td>
+                </tr>
+                <tr>
+                  <td><strong>Unified Amount Column</strong></td>
+                  <td>`Amount`, `Txn Amount`, `Transaction Amount`, `Amt`, `Value`, `INR`, `USD`, `EUR`</td>
+                </tr>
+                <tr>
+                  <td><strong>Debit / Withdrawal Column</strong></td>
+                  <td>`Debit`, `Withdrawal`, `Expense`, `Paid Out`, `Out`, `Spent`, `Dr`</td>
+                </tr>
+                <tr>
+                  <td><strong>Credit / Deposit Column</strong></td>
+                  <td>`Credit`, `Deposit`, `Paid In`, `Income`, `In`, `Received`, `Cr`</td>
+                </tr>
+                <tr>
+                  <td><strong>Type / Indicator Column</strong></td>
+                  <td>`Type`, `Txn Type`, `Transaction Type`, `Dr/Cr`, `Debit/Credit`</td>
+                </tr>
+                <tr>
+                  <td><strong>Balance Column (Metadata)</strong></td>
+                  <td>`Balance`, `Closing Balance`, `Bal`</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Tab 3: Date Formats -->
+        <div id="tab-dates" class="tab-content">
+          <h3 style="margin-bottom: 16px;">Supported Date Formats (Over 40 Variations)</h3>
+          <p>Expense Analyzer seamlessly handles short/long year variations, month names, timestamps, and raw numeric serial dates:</p>
+
+          <div class="data-table-wrap">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Date Category</th>
+                  <th>Format Specification</th>
+                  <th>Example String</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>Standard Numeric</strong></td>
+                  <td>`dd/MM/yyyy`, `dd-MM-yyyy`, `dd.MM.yyyy`</td>
+                  <td>`01/08/2026`, `01-08-2026`, `01.08.2026`</td>
+                </tr>
+                <tr>
+                  <td><strong>ISO & US Layouts</strong></td>
+                  <td>`yyyy-MM-dd`, `MM/dd/yyyy`</td>
+                  <td>`2026-08-01`, `08/01/2026`</td>
+                </tr>
+                <tr>
+                  <td><strong>Short Year Variations</strong></td>
+                  <td>`dd/MM/yy`, `dd-MM-yy`, `dd.MM.yy`</td>
+                  <td>`01/08/26`, `01-08-26`</td>
+                </tr>
+                <tr>
+                  <td><strong>Month Name Formats</strong></td>
+                  <td>`dd MMM yyyy`, `dd-MMM-yyyy`, `MMM dd, yyyy`</td>
+                  <td>`01 Aug 2026`, `01-Aug-2026`, `Aug 01, 2026`</td>
+                </tr>
+                <tr>
+                  <td><strong>Formats with Timestamps</strong></td>
+                  <td>`yyyy-MM-dd HH:mm:ss`, `dd MMM yyyy hh:mm a`</td>
+                  <td>`2026-08-01 14:30:00`, `01 Aug 2026 05:14 PM`</td>
+                </tr>
+                <tr>
+                  <td><strong>Excel Serial Timestamps</strong></td>
+                  <td>Raw numeric serial timestamps in Excel</td>
+                  <td>`46113` or `46113.0` (Days since 1900-01-01)</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Tab 4: Rejection Rules -->
+        <div id="tab-rejection" class="tab-content">
+          <h3 style="margin-bottom: 16px; color: var(--red-accent);">Document Rejection Criteria</h3>
+          <p>To preserve financial data integrity, documents meeting any of the following conditions are automatically rejected:</p>
+
+          <ul style="margin-top: 20px; display: flex; flex-direction: column; gap: 14px; list-style: none;">
+            <li style="padding: 16px; background: var(--bg-card); border-left: 4px solid var(--red-accent); border-radius: var(--radius-sm);">
+              <strong>1. Non-English / Foreign Script Documents:</strong> Statements containing non-Latin scripts (e.g. Tamil, Devanagari/Hindi, Telugu, Malayalam, Arabic, Chinese).
+            </li>
+            <li style="padding: 16px; background: var(--bg-card); border-left: 4px solid var(--red-accent); border-radius: var(--radius-sm);">
+              <strong>2. Non-Bank Utility, Medical & Service Invoices:</strong> Hospital bills, electricity invoices, broadband/fiber bills, school fee receipts, property tax notices, PNR/flight tickets, and e-commerce orders.
+            </li>
+            <li style="padding: 16px; background: var(--bg-card); border-left: 4px solid var(--red-accent); border-radius: var(--radius-sm);">
+              <strong>3. Scanned PDF Images without Text Layer:</strong> Image-only paper scans lacking an embedded digital vector text layer.
+            </li>
+            <li style="padding: 16px; background: var(--bg-card); border-left: 4px solid var(--red-accent); border-radius: var(--radius-sm);">
+              <strong>4. Encrypted PDF without Password:</strong> Password-protected files where the user cancels the prompt or inputs an invalid password.
+            </li>
+            <li style="padding: 16px; background: var(--bg-card); border-left: 4px solid var(--red-accent); border-radius: var(--radius-sm);">
+              <strong>5. Missing Core Columns:</strong> Documents where neither a Date nor a Narration column can be located within the first 100 rows.
+            </li>
+            <li style="padding: 16px; background: var(--bg-card); border-left: 4px solid var(--red-accent); border-radius: var(--radius-sm);">
+              <strong>6. Summary-Only Certificates:</strong> Bank cover letters or balance certificates containing opening/closing balance summaries but zero individual transaction line items.
+            </li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="index.html" class="brand">
+            <img src="assets/images/logo.png" alt="Expense Analyzer Logo" class="brand-logo">
+            <span>Expense Analyzer</span>
+          </a>
+          <p>Privacy-First, Local-Only Financial Intelligence powered by Acube Labs.</p>
+        </div>
+
+        <div>
+          <h4 class="footer-title">Navigation</h4>
+          <ul class="footer-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="features.html">Features & Flow</a></li>
+            <li><a href="statement-guide.html">Statement Guide</a></li>
+            <li><a href="contact.html">About & Contact</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="footer-title">Legal & Security</h4>
+          <ul class="footer-links">
+            <li><a href="privacy.html">Privacy Policy</a></li>
+            <li><a href="terms.html">Terms of Service</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="footer-title">Developer</h4>
+          <ul class="footer-links">
+            <li><a href="contact.html">Acube Labs</a></li>
+            <li><a href="mailto:acubelabs.dev@gmail.com">acubelabs.dev@gmail.com</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div>&copy; 2026 Acube Labs. All rights reserved.</div>
+        <div>Local-First • Zero Cloud Servers</div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

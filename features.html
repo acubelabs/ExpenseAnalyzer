@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Features & Architecture Flow — Expense Analyzer</title>
+  <meta name="description" content="In-depth feature breakdown and technical architecture flow of Expense Analyzer: multi-tenant local SQLite databases, document parsing, rule engine, and debt tracker.">
+  <link rel="icon" type="image/png" href="assets/images/logo.png">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+  <!-- Ambient Backdrop -->
+  <div class="ambient-glow"></div>
+  <div class="grid-overlay"></div>
+
+  <!-- Header / Navigation -->
+  <header class="navbar">
+    <div class="container nav-container">
+      <a href="index.html" class="brand">
+        <img src="assets/images/logo.png" alt="Expense Analyzer Logo" class="brand-logo">
+        <span>Expense Analyzer</span>
+      </a>
+
+      <nav>
+        <ul class="nav-links">
+          <li><a href="index.html" class="nav-link">Home</a></li>
+          <li><a href="features.html" class="nav-link active">Features & Flow</a></li>
+          <li><a href="statement-guide.html" class="nav-link">Statement Guide</a></li>
+          <li><a href="contact.html" class="nav-link">About & Contact</a></li>
+        </ul>
+      </nav>
+
+      <div class="nav-cta">
+        <a href="contact.html" class="btn btn-primary">Get App</a>
+      </div>
+
+      <button class="mobile-toggle" aria-label="Toggle navigation">
+        <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16"></path></svg>
+      </button>
+    </div>
+
+    <div class="mobile-nav">
+      <a href="index.html" class="nav-link">Home</a>
+      <a href="features.html" class="nav-link active">Features & Flow</a>
+      <a href="statement-guide.html" class="nav-link">Statement Guide</a>
+      <a href="privacy.html" class="nav-link">Privacy Policy</a>
+      <a href="terms.html" class="nav-link">Terms of Service</a>
+      <a href="contact.html" class="nav-link">About & Contact</a>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero" style="padding-bottom: 40px;">
+    <div class="container">
+      <div class="hero-content">
+        <div class="badge" style="margin-bottom: 20px;">
+          <span class="badge-dot"></span> Architectural Deep Dive
+        </div>
+        <h1>Complete Features & <span class="gradient-text">App Flow Guide</span></h1>
+        <p class="hero-subtitle">
+          Explore how Expense Analyzer handles physical data isolation, automated bank statement parsing, learned rule classification, and budget enforcement.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Local-First vs Cloud Comparison -->
+  <section style="padding: 60px 0;">
+    <div class="container">
+      <div class="section-header">
+        <div class="badge">Architecture Comparison</div>
+        <h2 style="margin-top: 12px;">Local-First vs Traditional Cloud Finance Apps</h2>
+        <p>Why storing data on local hardware outperforms central cloud servers in privacy and performance.</p>
+      </div>
+
+      <div class="data-table-wrap">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>Architecture Aspect</th>
+              <th>Expense Analyzer (Local-First)</th>
+              <th>Traditional Cloud Finance Apps</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Data Storage Location</strong></td>
+              <td><span style="color: var(--emerald-light); font-weight: 600;">100% Local Device Storage (SQLite)</span></td>
+              <td>Centralized Cloud Database Servers</td>
+            </tr>
+            <tr>
+              <td><strong>Multi-User Isolation</strong></td>
+              <td><span style="color: var(--emerald-light); font-weight: 600;">Physical separate database files per user</span></td>
+              <td>Logical tenancy in shared remote database</td>
+            </tr>
+            <tr>
+              <td><strong>Statement Processing</strong></td>
+              <td><span style="color: var(--emerald-light); font-weight: 600;">On-device PDF/Excel parsing & OCR</span></td>
+              <td>Statements uploaded to third-party servers</td>
+            </tr>
+            <tr>
+              <td><strong>Internet Requirement</strong></td>
+              <td><span style="color: var(--emerald-light); font-weight: 600;">Fully functional offline</span></td>
+              <td>Requires constant internet connection</td>
+            </tr>
+            <tr>
+              <td><strong>Cloud Backup Control</strong></td>
+              <td><span style="color: var(--emerald-light); font-weight: 600;">Direct encrypted backup to user's Google Drive</span></td>
+              <td>Stored on company's cloud infrastructure</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- Multi-Tenant Physical Isolation Flow -->
+  <section style="padding: 60px 0; background: var(--bg-surface); border-top: 1px solid var(--border-subtle); border-bottom: 1px solid var(--border-subtle);">
+    <div class="container">
+      <div class="section-header">
+        <div class="badge">Multi-Tenant Engineering</div>
+        <h2 style="margin-top: 12px;">Physical Multi-Tenant Database Isolation</h2>
+        <p>How Expense Analyzer isolates financial records when multiple users share a tablet or phone.</p>
+      </div>
+
+      <div class="grid-2" style="align-items: center; margin-top: 40px;">
+        <div style="background: var(--bg-card); border: 1px solid var(--border-card); border-radius: var(--radius-lg); padding: 32px;">
+          <h3 style="color: var(--emerald-light); margin-bottom: 16px;">The Multi-Tenant Isolation Flow</h3>
+          <ol style="margin-left: 20px; color: var(--text-muted); display: flex; flex-direction: column; gap: 14px; font-size: 0.95rem;">
+            <li><strong>Google Sign-In Trigger:</strong> Google Auth is used solely to derive a unique user identifier string.</li>
+            <li><strong>Database Resolution:</strong> The app creates/opens `expense_analyzer_{userId}.db` inside the device's protected internal app directory.</li>
+            <li><strong>Physical Database Lock:</strong> When User A active, User B's SQLite file is fully closed with zero active file handles.</li>
+            <li><strong>Sign-Out Protocol:</strong> Signing out flushes SQLite WAL logs and completely revokes memory pointers before switching profiles.</li>
+          </ol>
+        </div>
+
+        <div>
+          <img src="assets/images/ss/SS_8.png" alt="Multi-Tenant Profile Settings Screenshot" style="max-width: 260px; margin: 0 auto; display: block; border-radius: 28px; border: 6px solid #222938; box-shadow: 0 16px 36px rgba(0,0,0,0.5);">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Feature Grid Matrix -->
+  <section style="padding: 80px 0;">
+    <div class="container">
+      <div class="section-header">
+        <div class="badge">Comprehensive Capabilities</div>
+        <h2 style="margin-top: 12px;">Detailed Feature Matrix</h2>
+      </div>
+
+      <div class="grid-3">
+
+        <!-- Feature 1 -->
+        <div class="card">
+          <div class="card-icon">
+            <svg width="26" height="26" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path></svg>
+          </div>
+          <h3>Multi-Bank Consolidation</h3>
+          <p>Consolidate statements from major Indian and global banks (HDFC, SBI, ICICI, Axis, Kotak, Citi, HSBC) alongside mobile wallets (Paytm, PhonePe, GPay).</p>
+        </div>
+
+        <!-- Feature 2 -->
+        <div class="card">
+          <div class="card-icon">
+            <svg width="26" height="26" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z"></path></svg>
+          </div>
+          <h3>PDF & Excel Parser Engine</h3>
+          <p>Auto-detects transaction tables across PDF files (with password decryption support) and `.xlsx`/`.xls` spreadsheets without manual row formatting.</p>
+        </div>
+
+        <!-- Feature 3 -->
+        <div class="card">
+          <div class="card-icon">
+            <svg width="26" height="26" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"></path></svg>
+          </div>
+          <h3>OpenCV & ML Kit Receipt Scanner</h3>
+          <p>Scan paper receipts using interactive quadrilateral crop overlay, Sauvola thresholding, illumination correction, and ML Kit text recognition.</p>
+        </div>
+
+        <!-- Feature 4 -->
+        <div class="card">
+          <div class="card-icon">
+            <svg width="26" height="26" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"></path></svg>
+          </div>
+          <h3>Smart Rule & Category Engine</h3>
+          <p>Auto-categorize transactions into 13 default categories (Food, Travel, Bills, Shopping, Investments, etc.) with custom keyword rules and learned memory.</p>
+        </div>
+
+        <!-- Feature 5 -->
+        <div class="card">
+          <div class="card-icon">
+            <svg width="26" height="26" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+          </div>
+          <h3>Lend & Owe Debt Tracker</h3>
+          <p>Track informal loans, split bills, and borrowed amounts with contacts, partial settlements, settlement history, and scheduled reminder alarms.</p>
+        </div>
+
+        <!-- Feature 6 -->
+        <div class="card">
+          <div class="card-icon">
+            <svg width="26" height="26" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M8 7H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-3m-1 4l-3 3m0 0l-3-3m3 3V4"></path></svg>
+          </div>
+          <h3>Encrypted Drive Backup & Export</h3>
+          <p>Export financial data into formatted Excel spreadsheets or PDF reports, and maintain automated encrypted backups directly in your private Google Drive folder.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="index.html" class="brand">
+            <img src="assets/images/logo.png" alt="Expense Analyzer Logo" class="brand-logo">
+            <span>Expense Analyzer</span>
+          </a>
+          <p>Privacy-First, Local-Only Financial Intelligence powered by Acube Labs.</p>
+        </div>
+
+        <div>
+          <h4 class="footer-title">Navigation</h4>
+          <ul class="footer-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="features.html">Features & Flow</a></li>
+            <li><a href="statement-guide.html">Statement Guide</a></li>
+            <li><a href="contact.html">About & Contact</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="footer-title">Legal & Security</h4>
+          <ul class="footer-links">
+            <li><a href="privacy.html">Privacy Policy</a></li>
+            <li><a href="terms.html">Terms of Service</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="footer-title">Developer</h4>
+          <ul class="footer-links">
+            <li><a href="contact.html">Acube Labs</a></li>
+            <li><a href="mailto:acubelabs.dev@gmail.com">acubelabs.dev@gmail.com</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div>&copy; 2026 Acube Labs. All rights reserved.</div>
+        <div>Local-First • Zero Cloud Servers</div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
