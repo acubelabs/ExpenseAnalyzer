@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Policy - Expense Analyzer</title>
+    <style>
+        :root { --primary: #00897b; --primary-dark: #004d40; --bg-light: #f7fafc; --text-dark: #1a202c; }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; line-height: 1.6; color: var(--text-dark); background: #ffffff; }
+        
+        header { background: #ffffff; border-bottom: 1px solid #e2e8f0; position: sticky; top: 0; z-index: 1000; box-shadow: 0 1px 3px rgba(0,0,0,0.05); }
+        .nav-container { max-width: 1100px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; padding: 12px 24px; }
+        .brand { display: flex; align-items: center; gap: 12px; text-decoration: none; color: var(--primary-dark); font-weight: 700; font-size: 1.25rem; }
+        .brand svg { width: 32px; height: 32px; fill: var(--primary); }
+        .nav-links { display: flex; gap: 20px; list-style: none; }
+        .nav-links a { text-decoration: none; color: #4a5568; font-weight: 600; font-size: 0.95rem; transition: color 0.2s; }
+        .nav-links a:hover, .nav-links a.active { color: var(--primary); }
+        
+        .page-header { background: linear-gradient(135deg, #e6f4f1 0%, #f7fafc 100%); padding: 40px 24px; text-align: center; border-bottom: 1px solid #e2e8f0; }
+        .page-header h1 { color: var(--primary-dark); font-size: 2.2rem; }
+        
+        .main-container { max-width: 900px; margin: 40px auto; padding: 0 24px; }
+        .policy-card { background: #ffffff; border: 1px solid #e2e8f0; border-radius: 12px; padding: 32px; box-shadow: 0 1px 3px rgba(0,0,0,0.02); }
+        .policy-card h2 { color: var(--primary-dark); font-size: 1.4rem; margin-top: 24px; margin-bottom: 12px; border-bottom: 1px solid #edf2f7; padding-bottom: 6px; }
+        .policy-card p, .policy-card ul { margin-bottom: 16px; color: #4a5568; }
+        .policy-card ul { padding-left: 24px; }
+        .updated-date { color: #718096; font-size: 0.9rem; margin-bottom: 24px; font-style: italic; }
+        
+        footer { background: #1a202c; color: #a0aec0; padding: 40px 24px 24px; margin-top: 64px; }
+        .footer-container { max-width: 1100px; margin: 0 auto; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 32px; }
+        .footer-col h4 { color: #ffffff; margin-bottom: 12px; }
+        .footer-col ul { list-style: none; }
+        .footer-col ul li { margin-bottom: 8px; }
+        .footer-col a { color: #a0aec0; text-decoration: none; }
+        .footer-col a:hover { color: #ffffff; }
+        .footer-bottom { max-width: 1100px; margin: 32px auto 0; text-align: center; border-top: 1px solid #2d3748; padding-top: 24px; font-size: 0.85rem; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="nav-container">
+            <a href="index.html" class="brand">
+                <svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V5h14v14zM7 10h2v7H7zm4-3h2v10h-2zm4 6h2v4h-2z"/></svg>
+                <span>Expense Analyzer</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="index.html#features">Features</a></li>
+                <li><a href="privacy.html" class="active">Privacy Policy</a></li>
+                <li><a href="terms.html">Terms of Use</a></li>
+                <li><a href="support.html">Support</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <div class="page-header">
+        <h1>Privacy Policy</h1>
+    </div>
+
+    <div class="main-container">
+        <div class="policy-card">
+            <p class="updated-date">Last updated: August 28, 2026</p>
+            
+            <p>At <strong>Expense Analyzer</strong> ("we", "our", or "us"), privacy is built into our core architecture. This Privacy Policy explains how personal and financial information is collected, used, and safeguarded when you use our native Android application.</p>
+
+            <h2>1. Local-First Data Storage</h2>
+            <p>Expense Analyzer operates primarily as a local-first application. All your expense records, accounts, custom classification rules, budgets, and uploaded statement files are stored locally on your device in an isolated Room Database.</p>
+
+            <h2>2. Google Drive Backup & User Data Access</h2>
+            <p>If you explicitly enable Google Cloud Sync, Expense Analyzer accesses your Google Drive account using the restricted scope (<code>https://www.googleapis.com/auth/drive.file</code>) to manage backup files created solely by this application.</p>
+            <ul>
+                <li><strong>Usage:</strong> Your Google account email and OAuth token are used exclusively to authenticate and transfer encrypted backup files to your private Google Drive storage.</li>
+                <li><strong>Isolation:</strong> We do not access, view, or store any other files in your Google Drive account.</li>
+                <li><strong>No Commercial Use:</strong> We do not sell, rent, share, or use your financial or Google user data for advertising or marketing.</li>
+            </ul>
+
+            <h2>3. AI Assistant & On-Device Processing</h2>
+            <p>Expense Analyzer supports both Cloud AI (Gemini BYOK) and Offline On-Device AI (LiteRT-LM):</p>
+            <ul>
+                <li><strong>Cloud AI (Gemini BYOK):</strong> If you choose to enable Cloud AI, your queries are processed via your personal encrypted API key stored safely in Android KeyStore.</li>
+                <li><strong>On-Device Local AI:</strong> If you download local models, all financial chat queries, receipt OCR corrections, and category classifications run 100% offline on your device without transmitting data over the internet.</li>
+            </ul>
+
+            <h2>4. Security Protocols</h2>
+            <p>Your data is protected locally using Android KeyStore encryption and optional PIN / Biometric locks. Multi-account isolation ensures that switching accounts swaps local storage, preventing cross-user data exposure.</p>
+
+            <h2>5. Data Deletion & User Rights</h2>
+            <p>You retain full ownership of your data at all times. You can wipe your local records directly in the app settings, or delete your backup file from your Google Drive account at any time.</p>
+
+            <h2>6. Contact Developer</h2>
+            <p>For any privacy inquiries or support regarding Expense Analyzer, please contact us at:</p>
+            <p><strong>Email:</strong> <a href="mailto:acubelabs@gmail.com" style="color: var(--primary);">acubelabs@gmail.com</a></p>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-container">
+            <div class="footer-col">
+                <h4>Expense Analyzer</h4>
+                <p>Private, intelligent personal finance assistant for Android.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Legal & Policies</h4>
+                <ul>
+                    <li><a href="privacy.html">Privacy Policy</a></li>
+                    <li><a href="terms.html">Terms of Use / Service</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Support</h4>
+                <ul>
+                    <li><a href="support.html">Help & Support</a></li>
+                    <li><a href="mailto:acubelabs@gmail.com">Contact Developer</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Expense Analyzer (Acube Labs). All rights reserved.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
