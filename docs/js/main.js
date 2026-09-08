@@ -1,32 +1,27 @@
 /**
  * Expense Analyzer Official Website Controller
- * Handles Preloader, Screenshot Carousel, Tab Switcher, FAQ Accordion, Mobile Nav
+ * Handles Screenshot Carousel, Tab Switcher, FAQ Accordion, Mobile Nav
  */
 
-// Hide preloader when fonts and page styles are fully rendered
+// Fail-safe Preloader Dismissal
 function hidePreloader() {
   const preloader = document.getElementById('app-preloader');
-  if (preloader && !preloader.classList.contains('loaded')) {
+  if (preloader) {
     preloader.classList.add('loaded');
+    setTimeout(() => {
+      preloader.style.display = 'none';
+    }, 300);
   }
 }
 
-// Fast preloader dismissal
-if ('fonts' in document) {
-  Promise.all([
-    document.fonts.ready,
-    new Promise(resolve => {
-      if (document.readyState === 'complete') resolve();
-      else window.addEventListener('load', resolve);
-    })
-  ]).then(hidePreloader);
+// Dismiss immediately on readyState / DOMContentLoaded / load / fallback
+if (document.readyState === 'complete' || document.readyState === 'interactive') {
+  hidePreloader();
 } else {
-  if (document.readyState === 'complete') hidePreloader();
-  else window.addEventListener('load', hidePreloader);
+  document.addEventListener('DOMContentLoaded', hidePreloader);
 }
-
-// Fallback safety timeout (400ms max) to ensure loader disappears fast
-setTimeout(hidePreloader, 400);
+window.addEventListener('load', hidePreloader);
+setTimeout(hidePreloader, 150);
 
 document.addEventListener('DOMContentLoaded', () => {
   initMobileNav();

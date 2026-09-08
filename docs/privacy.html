@@ -21,12 +21,12 @@
       align-items: center;
       justify-content: center;
       gap: 16px;
-      transition: opacity 0.3s ease, visibility 0.3s ease;
+      animation: preloader-autohide 0.3s ease 0.15s forwards;
+      pointer-events: none;
     }
     #app-preloader.loaded {
       opacity: 0;
       visibility: hidden;
-      pointer-events: none;
     }
     .preloader-logo {
       width: 48px;
@@ -49,6 +49,9 @@
     @keyframes preloader-pulse {
       0%, 100% { transform: scale(1); opacity: 0.9; }
       50% { transform: scale(1.08); opacity: 1; }
+    }
+    @keyframes preloader-autohide {
+      to { opacity: 0; visibility: hidden; }
     }
   </style>
   <link rel="stylesheet" href="css/styles.css">
@@ -104,13 +107,13 @@
   </header>
 
   <!-- Content Section -->
-  <section style="padding: 40px 0 60px;">
+  <section style="padding: 36px 0 40px;">
     <div class="container" style="max-width: 900px;">
       <div class="badge" style="margin-bottom: 16px;">Legal Document</div>
       <h1 style="margin-bottom: 8px;">Privacy Policy</h1>
-      <p style="color: var(--emerald-light); font-weight: 600; margin-bottom: 32px;">Last Updated: August 18, 2026</p>
+      <p style="color: var(--emerald-light); font-weight: 600; margin-bottom: 28px;">Last Updated: August 18, 2026</p>
 
-      <div style="background: var(--bg-card); border: 1px solid var(--border-card); border-radius: var(--radius-lg); padding: 36px; color: var(--text-muted); font-size: 1rem; display: flex; flex-direction: column; gap: 24px; line-height: 1.7;">
+      <div style="background: var(--bg-card); border: 1px solid var(--border-card); border-radius: var(--radius-lg); padding: 32px; color: var(--text-muted); font-size: 1rem; display: flex; flex-direction: column; gap: 24px; line-height: 1.7;">
 
         <p>
           Acube Labs ("we," "us," or "our") operates the Expense Analyzer mobile application (the "App"). This App is built with a <strong>Privacy-First, Local-Only Architecture</strong>. We believe your financial data is one of your most sensitive assets; therefore, our architecture ensures we never have access to it.
