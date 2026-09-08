@@ -5,73 +5,144 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Expense Analyzer - Smart Personal Finance App</title>
     <style>
-        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif; line-height: 1.6; color: #1a1a1a; max-width: 800px; margin: 0 auto; padding: 24px; }
-        header { text-align: center; border-bottom: 2px solid #e2e8f0; padding-bottom: 24px; margin-bottom: 32px; }
-        h1 { color: #00897b; margin-bottom: 8px; }
-        .tagline { font-size: 1.2rem; color: #4a5568; }
-        nav { margin: 20px 0; }
-        nav a { color: #00897b; text-decoration: none; font-weight: bold; margin: 0 12px; }
-        nav a:hover { text-decoration: underline; }
-        section { margin-bottom: 40px; }
-        .card { background: #f7fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 20px; margin-top: 16px; }
-        footer { text-align: center; border-top: 1px solid #e2e8f0; padding-top: 24px; color: #718096; font-size: 0.9rem; }
+        :root { --primary: #00897b; --primary-dark: #004d40; --bg-light: #f7fafc; --text-dark: #1a202c; }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; line-height: 1.6; color: var(--text-dark); background: #ffffff; }
+        
+        /* Header & Navigation */
+        header { background: #ffffff; border-bottom: 1px solid #e2e8f0; position: sticky; top: 0; z-index: 1000; box-shadow: 0 1px 3px rgba(0,0,0,0.05); }
+        .nav-container { max-width: 1100px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; padding: 12px 24px; }
+        .brand { display: flex; align-items: center; gap: 12px; text-decoration: none; color: var(--primary-dark); font-weight: 700; font-size: 1.25rem; }
+        .brand svg { width: 32px; height: 32px; fill: var(--primary); }
+        .nav-links { display: flex; gap: 20px; list-style: none; }
+        .nav-links a { text-decoration: none; color: #4a5568; font-weight: 600; font-size: 0.95rem; transition: color 0.2s; }
+        .nav-links a:hover, .nav-links a.active { color: var(--primary); }
+        
+        /* Hero Section */
+        .hero { background: linear-gradient(135deg, #e6f4f1 0%, #f7fafc 100%); padding: 64px 24px; text-align: center; border-bottom: 1px solid #e2e8f0; }
+        .hero-container { max-width: 800px; margin: 0 auto; }
+        .hero h1 { font-size: 2.5rem; color: var(--primary-dark); margin-bottom: 16px; }
+        .hero p { font-size: 1.2rem; color: #4a5568; margin-bottom: 24px; }
+        .badge { display: inline-block; background: var(--primary); color: white; padding: 6px 16px; border-radius: 20px; font-size: 0.85rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 16px; }
+        
+        /* Main Layout */
+        .main-container { max-width: 1100px; margin: 40px auto; padding: 0 24px; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; margin-top: 32px; }
+        .card { background: var(--bg-light); border: 1px solid #e2e8f0; border-radius: 12px; padding: 24px; transition: transform 0.2s, box-shadow 0.2s; }
+        .card:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,0,0,0.05); }
+        .card-icon { font-size: 2rem; margin-bottom: 12px; }
+        .card h3 { color: var(--primary-dark); margin-bottom: 8px; }
+        
+        /* Section Styling */
+        section { margin-bottom: 48px; }
+        section h2 { color: var(--primary-dark); font-size: 1.8rem; margin-bottom: 16px; border-bottom: 2px solid #e2e8f0; padding-bottom: 8px; }
+        
+        /* Footer */
+        footer { background: #1a202c; color: #a0aec0; padding: 40px 24px 24px; margin-top: 64px; }
+        .footer-container { max-width: 1100px; margin: 0 auto; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 32px; }
+        .footer-col h4 { color: #ffffff; margin-bottom: 12px; }
+        .footer-col ul { list-style: none; }
+        .footer-col ul li { margin-bottom: 8px; }
+        .footer-col a { color: #a0aec0; text-decoration: none; }
+        .footer-col a:hover { color: #ffffff; }
+        .footer-bottom { max-width: 1100px; margin: 32px auto 0; text-align: center; border-top: 1px solid #2d3748; padding-top: 24px; font-size: 0.85rem; }
     </style>
 </head>
 <body>
 
     <header>
-        <h1>Expense Analyzer</h1>
-        <p class="tagline">Your Intelligent Personal Finance & Expense Assistant</p>
-        <nav>
-            <a href="#about">About App</a> | 
-            <a href="#privacy">Privacy Policy</a> | 
-            <a href="#contact">Contact Support</a>
-        </nav>
-    </header>
-
-    <section id="about">
-        <h2>About Expense Analyzer</h2>
-        <p><strong>Expense Analyzer</strong> is a native Android application designed to simplify personal money management. It helps users track daily expenses, manage budgets, scan receipt images, analyze financial trends, and back up financial records securely.</p>
-        
-        <div class="card">
-            <h3>Key Features:</h3>
-            <ul>
-                <li><strong>Expense & Income Tracking:</strong> Easily log and categorize your daily transactions.</li>
-                <li><strong>Budget Management:</strong> Set monthly budgets and get alerts before overspending.</li>
-                <li><strong>Receipt Scanning:</strong> Capture and process receipts directly on your device.</li>
-                <li><strong>Finora AI Assistant:</strong> Ask financial insights using local or cloud AI models.</li>
-                <li><strong>Secure Google Drive Backup:</strong> Keep your financial data safe with encrypted backups to your personal Google Drive.</li>
+        <div class="nav-container">
+            <a href="index.html" class="brand">
+                <svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V5h14v14zM7 10h2v7H7zm4-3h2v10h-2zm4 6h2v4h-2z"/></svg>
+                <span>Expense Analyzer</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="index.html" class="active">Home</a></li>
+                <li><a href="index.html#features">Features</a></li>
+                <li><a href="privacy.html">Privacy Policy</a></li>
+                <li><a href="terms.html">Terms of Use</a></li>
+                <li><a href="support.html">Support</a></li>
             </ul>
         </div>
-    </section>
+    </header>
 
-    <section id="privacy">
-        <h2>Privacy Policy</h2>
-        <p><em>Last updated: August 28, 2026</em></p>
-        <p><strong>Expense Analyzer</strong> ("we", "our", or "us") respects your privacy and is committed to protecting your personal data.</p>
+    <div class="hero">
+        <div class="hero-container">
+            <span class="badge">Privacy-First AI Companion</span>
+            <h1>Smart Personal Finance & Analytics</h1>
+            <p>Track expenses, parse bank statements, scan paper receipts, and analyze spending trends with on-device privacy and encrypted cloud sync.</p>
+        </div>
+    </div>
+
+    <div class="main-container">
         
-        <h3>1. Data Collection & Usage</h3>
-        <p>Expense Analyzer stores all your expense logs, categories, and account balances locally on your Android device. We do not sell or share your personal financial data with any third parties.</p>
+        <section id="features">
+            <h2>Core Features</h2>
+            <div class="grid">
+                <div class="card">
+                    <div class="card-icon">📊</div>
+                    <h3>Smart Statement Analysis</h3>
+                    <p>Instantly parse PDF or Excel bank statements with automatic column detection and UPI noise cleaning.</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon">💬</div>
+                    <h3>Finora AI Assistant</h3>
+                    <p>Query spending patterns in natural language, set budgets, and ask financial insights powered by Gemini AI.</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon">🔒</div>
+                    <h3>Accelerated Local AI Mode</h3>
+                    <p>Run lightweight LLMs (LiteRT-LM) on-device with GPU acceleration for 100% offline financial analysis.</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon">📸</div>
+                    <h3>Intelligent Receipt Scanner</h3>
+                    <p>Convert paper receipts into digital records using ML Kit OCR, AI merchant correction, and automatic notes.</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon">📉</div>
+                    <h3>Dynamic Insights & Budgets</h3>
+                    <p>Interactive Pie and Line charts with income/expense toggles, plus proactive monthly budget threshold alerts.</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon">☁️</div>
+                    <h3>Encrypted Google Drive Sync</h3>
+                    <p>Multi-user data isolation with AES-encrypted backups synced safely to your personal Google Drive account.</p>
+                </div>
+            </div>
+        </section>
 
-        <h3>2. Google User Data & Drive Integration</h3>
-        <p>If you choose to use the Google Sign-In and Google Drive backup feature, Expense Analyzer accesses only the specific backup files created by the application (<code>https://www.googleapis.com/auth/drive.file</code> or app data folder). Your Google account information is used strictly to authenticate and store your encrypted backup file in your private Google Drive storage.</p>
+        <section id="about">
+            <h2>About Expense Analyzer</h2>
+            <p>Expense Analyzer is a native Android application engineered with Jetpack Compose, Material Design 3, and dynamic Room Database storage. Unlike traditional finance tools, Expense Analyzer prioritizes user privacy—processing data locally whenever possible and storing encrypted backups directly in the user's private Google Drive storage.</p>
+        </section>
 
-        <h3>3. Data Security</h3>
-        <p>Your local data is secured on-device using Android's native security features and EncryptedSharedPreferences.</p>
-
-        <h3>4. User Rights & Data Deletion</h3>
-        <p>You can delete all your financial records at any time directly within the app settings or by uninstalling the application. You can also delete your Google Drive backup file directly from your Google account.</p>
-    </section>
-
-    <section id="contact">
-        <h2>Contact & Support</h2>
-        <p>If you have any questions or feedback regarding Expense Analyzer or this Privacy Policy, please contact us at:</p>
-        <p><strong>Email:</strong> <a href="mailto:acubelabs@gmail.com">acubelabs@gmail.com</a></p>
-    </section>
+    </div>
 
     <footer>
-        <p>&copy; 2026 Expense Analyzer (Acube Labs). All rights reserved.</p>
-        <p><a href="#privacy">Privacy Policy</a></p>
+        <div class="footer-container">
+            <div class="footer-col">
+                <h4>Expense Analyzer</h4>
+                <p>Private, intelligent personal finance assistant for Android.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Legal & Policies</h4>
+                <ul>
+                    <li><a href="privacy.html">Privacy Policy</a></li>
+                    <li><a href="terms.html">Terms of Use / Service</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Support</h4>
+                <ul>
+                    <li><a href="support.html">Help & Support</a></li>
+                    <li><a href="mailto:acubelabs@gmail.com">Contact Developer</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Expense Analyzer (Acube Labs). All rights reserved.</p>
+        </div>
     </footer>
 
 </body>
