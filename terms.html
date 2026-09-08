@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Terms of Use - Expense Analyzer</title>
+    <style>
+        :root { --primary: #00897b; --primary-dark: #004d40; --bg-light: #f7fafc; --text-dark: #1a202c; }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; line-height: 1.6; color: var(--text-dark); background: #ffffff; }
+        
+        header { background: #ffffff; border-bottom: 1px solid #e2e8f0; position: sticky; top: 0; z-index: 1000; box-shadow: 0 1px 3px rgba(0,0,0,0.05); }
+        .nav-container { max-width: 1100px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; padding: 12px 24px; }
+        .brand { display: flex; align-items: center; gap: 12px; text-decoration: none; color: var(--primary-dark); font-weight: 700; font-size: 1.25rem; }
+        .brand svg { width: 32px; height: 32px; fill: var(--primary); }
+        .nav-links { display: flex; gap: 20px; list-style: none; }
+        .nav-links a { text-decoration: none; color: #4a5568; font-weight: 600; font-size: 0.95rem; transition: color 0.2s; }
+        .nav-links a:hover, .nav-links a.active { color: var(--primary); }
+        
+        .page-header { background: linear-gradient(135deg, #e6f4f1 0%, #f7fafc 100%); padding: 40px 24px; text-align: center; border-bottom: 1px solid #e2e8f0; }
+        .page-header h1 { color: var(--primary-dark); font-size: 2.2rem; }
+        
+        .main-container { max-width: 900px; margin: 40px auto; padding: 0 24px; }
+        .terms-card { background: #ffffff; border: 1px solid #e2e8f0; border-radius: 12px; padding: 32px; box-shadow: 0 1px 3px rgba(0,0,0,0.02); }
+        .terms-card h2 { color: var(--primary-dark); font-size: 1.4rem; margin-top: 24px; margin-bottom: 12px; border-bottom: 1px solid #edf2f7; padding-bottom: 6px; }
+        .terms-card p, .terms-card ul { margin-bottom: 16px; color: #4a5568; }
+        .terms-card ul { padding-left: 24px; }
+        .updated-date { color: #718096; font-size: 0.9rem; margin-bottom: 24px; font-style: italic; }
+        
+        footer { background: #1a202c; color: #a0aec0; padding: 40px 24px 24px; margin-top: 64px; }
+        .footer-container { max-width: 1100px; margin: 0 auto; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 32px; }
+        .footer-col h4 { color: #ffffff; margin-bottom: 12px; }
+        .footer-col ul { list-style: none; }
+        .footer-col ul li { margin-bottom: 8px; }
+        .footer-col a { color: #a0aec0; text-decoration: none; }
+        .footer-col a:hover { color: #ffffff; }
+        .footer-bottom { max-width: 1100px; margin: 32px auto 0; text-align: center; border-top: 1px solid #2d3748; padding-top: 24px; font-size: 0.85rem; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="nav-container">
+            <a href="index.html" class="brand">
+                <svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V5h14v14zM7 10h2v7H7zm4-3h2v10h-2zm4 6h2v4h-2z"/></svg>
+                <span>Expense Analyzer</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="index.html#features">Features</a></li>
+                <li><a href="privacy.html">Privacy Policy</a></li>
+                <li><a href="terms.html" class="active">Terms of Use</a></li>
+                <li><a href="support.html">Support</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <div class="page-header">
+        <h1>Terms of Use</h1>
+    </div>
+
+    <div class="main-container">
+        <div class="terms-card">
+            <p class="updated-date">Last updated: August 28, 2026</p>
+
+            <p>Welcome to <strong>Expense Analyzer</strong>. By installing, accessing, or using our mobile application, you agree to be bound by these Terms of Use ("Terms").</p>
+
+            <h2>1. App Usage & License</h2>
+            <p>Acube Labs grants you a personal, revocable, non-exclusive, non-transferable license to download, install, and use Expense Analyzer on your Android device for personal, non-commercial financial management purposes.</p>
+
+            <h2>2. Financial Disclaimer</h2>
+            <p>Expense Analyzer provides automated budgeting, categorizations, receipt parsing, and analytics tools for informational purposes only. The app does not provide formal legal, accounting, tax, or professional financial advice.</p>
+
+            <h2>3. User Responsibilities & API Keys</h2>
+            <p>When using "Bring Your Own Key" (BYOK) cloud AI integrations (such as Google Gemini API), you are responsible for maintaining the confidentiality of your API keys and adhering to the usage terms of the respective API provider.</p>
+
+            <h2>4. Data Backup Responsibility</h2>
+            <p>While Expense Analyzer includes automated encrypted backup to Google Drive, you remain responsible for maintaining backups of your critical financial documents and device data.</p>
+
+            <h2>5. Intellectual Property</h2>
+            <p>All logos, code, design elements, algorithms, and interface components of Expense Analyzer are the intellectual property of Acube Labs and protected under applicable copyright laws.</p>
+
+            <h2>6. Contact</h2>
+            <p>For questions regarding these Terms of Use, please contact us at <a href="mailto:acubelabs@gmail.com" style="color: var(--primary);">acubelabs@gmail.com</a>.</p>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-container">
+            <div class="footer-col">
+                <h4>Expense Analyzer</h4>
+                <p>Private, intelligent personal finance assistant for Android.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Legal & Policies</h4>
+                <ul>
+                    <li><a href="privacy.html">Privacy Policy</a></li>
+                    <li><a href="terms.html">Terms of Use / Service</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Support</h4>
+                <ul>
+                    <li><a href="support.html">Help & Support</a></li>
+                    <li><a href="mailto:acubelabs@gmail.com">Contact Developer</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Expense Analyzer (Acube Labs). All rights reserved.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
